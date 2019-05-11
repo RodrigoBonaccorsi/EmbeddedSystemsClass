@@ -1,0 +1,82 @@
+#include<unistd.h> 
+#include<stdio.h>
+#include<string>
+
+int main() 
+{
+	FILE *io,*iodir,*ioval;
+
+	io = fopen("/sys/class/gpio/export", "w"); %%cria o arquivo de leitura%
+    
+    fseek(io,0,SEEK_SET); %%posiciona o ponteiro para a primeira posiçao %%
+    fprintf(io,"%s",GPIO_67); %%identifica a porta GPIO_67%%
+    fflush(io); %%armazena os dados na memoria principal(buffer)%
+    
+    iodir = fopen("/sys/class/gpio/gpio67/direction", "w");
+    fseek(iodir,0,SEEK_SET);
+    fprintf(iodir,"out");
+    fflush(iodir);
+
+    ioval = fopen("/sys/class/gpio/gpio67/value", "w");
+    fseek(ioval,0,SEEK_SET);
+
+    io = fopen("/sys/class/gpio/export", "w"); %%cria o arquivo de leitura%
+    
+    fseek(io,0,SEEK_SET); %%posiciona o ponteiro para a primeira posiçao %%
+    fprintf(io,"%s",GPIO_68); %%identifica a porta GPIO_68%%
+    fflush(io); %%armazena os dados na memoria principal(buffer)%
+    
+    iodir = fopen("/sys/class/gpio/gpio68/direction", "w");
+    fseek(iodir,0,SEEK_SET);
+    fprintf(iodir,"out");
+    fflush(iodir);
+
+    ioval = fopen("/sys/class/gpio/gpio67/value", "w");
+    fseek(ioval,0,SEEK_SET);
+     
+
+
+    io = fopen("/sys/class/gpio/export", "w"); %%cria o arquivo de leitura%
+    
+    fseek(io,0,SEEK_SET); %%posiciona o ponteiro para a primeira posiçao %%
+    fprintf(io,"%s",GPIO_44); %%identifica a porta GPIO_44%%
+    fflush(io); %%armazena os dados na memoria principal(buffer)%
+    
+    iodir = fopen("/sys/class/gpio/gpio44/direction", "w");
+    fseek(iodir,0,SEEK_SET);
+    fprintf(iodir,"out");
+    fflush(iodir);
+
+    ioval = fopen("/sys/class/gpio/gpio44/value", "w");
+    fseek(ioval,0,SEEK_SET);
+
+    io = fopen("/sys/class/gpio/export", "w"); %%cria o arquivo de leitura%
+    
+    fseek(io,0,SEEK_SET); %%posiciona o ponteiro para a primeira posiçao %%
+    fprintf(io,"%s",GPIO_26); %%identifica a porta GPIO_26%%
+    fflush(io); %%armazena os dados na memoria principal(buffer)%
+    
+    iodir = fopen("/sys/class/gpio/gpio26/direction", "w");
+    fseek(iodir,0,SEEK_SET);
+    fprintf(iodir,"out");
+    fflush(iodir);
+
+    ioval = fopen("/sys/class/gpio/gpio26/value", "w");
+    fseek(ioval,0,SEEK_SET);
+
+
+	while(1)
+    {
+        fprintf(ioval,"%d",1);
+        fflush(ioval);
+        sleep(1);
+        fprintf(ioval,"%d",0);
+        fflush(ioval);
+        sleep(1);
+    }
+
+fclose(io);
+fclose(iodir);
+fclose(ioval);
+return 0;
+}
